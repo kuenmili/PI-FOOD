@@ -1,10 +1,20 @@
-const Recipe = require('../../models/Recipe');
+/*const Recipe = require('../../db');
 
-const createRecipe = async () => {
-    
-//RECIBE TODOS LOS DATOS PARA CREAR RECETA Y RELACIONARLA CON LOS TIPOS DE DIETA SOLICITADOS
-//SE SOLICITA A BODY. DEBE CREARLA EN LA BDD Y RELACIONARLA CON LOS TIPOS DE DIETA.
-    
+const createRecipe = async ( id,
+    healthScore,
+    title,
+    image,
+    summary,
+    steps ) => {
+    const recipe = await Recipe.create({
+        id,
+        healthScore,
+        title,
+        image,
+        summary,
+        steps,
+    });
+    return recipe;
 };
 
-module.exports = createRecipe;
+module.exports = createRecipe;*/
