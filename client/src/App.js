@@ -2,11 +2,10 @@ import { Route, useLocation } from 'react-router-dom';
 import { Landing, Home, Detail, Form } from './views'
 import NavBar from './components/NavBar/NavBar';
 
-
 function App() {
 
   const {pathname} = useLocation();
-  console.log(pathname);
+  
 
   return (
     <div className="App">
