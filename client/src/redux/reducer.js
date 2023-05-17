@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     recipes: []
-}
+};
 
 
 const reducer = (state = initialState, {type, payload}) => {
