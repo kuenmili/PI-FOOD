@@ -12,12 +12,9 @@ import {
 const URL = 'http://localhost:3001';
 
 export const getAllRecipes = () => async (dispatch) => {
-        const apiData = axios.get(`${URL}/recipes`);
-        console.log(apiData);
-        dispatch({ type: GET_RECIPES, payload: apiData.results.data });
-       
+        const apiData = await axios.get(`${URL}/recipes`);
+        dispatch({ type: GET_RECIPES, payload: apiData.data });      
 };
-
 
 export const getAllDiets = () => async (dispatch) => {
     const { data } = await axios.get(`${URL}/diets`);

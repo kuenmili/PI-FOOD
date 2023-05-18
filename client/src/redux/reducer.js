@@ -6,9 +6,10 @@ import {
 } from './action-types';
 
 const initialState = {
-    recipes: []
+    recipes: [],
+    detail: {},
+    diets: []
 };
-
 
 const reducer = (state = initialState, {type, payload}) => {
     switch (type) {
@@ -24,11 +25,11 @@ const reducer = (state = initialState, {type, payload}) => {
         case GET_RECIPE_DETAIL:
             return {
                 ...state,
-                recipe: payload,
+                detail: payload,
             };
         default:
             return { ...state };
-    }
+    };
 };
 
 export default reducer;

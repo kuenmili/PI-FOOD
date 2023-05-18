@@ -7,8 +7,8 @@ const Cards = () => {
     const recipes = useSelector(state => state.recipes);
 
     return (
-        <div className={style.mainContainer}>
-            <h1>Cards</h1>
+        <div className={style.container}>
+            
             {recipes.map(recipe => {
                 return <Card
                 key={recipe.id}
