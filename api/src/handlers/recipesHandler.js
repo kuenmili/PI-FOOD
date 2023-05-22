@@ -68,6 +68,7 @@ const getByNameHandler = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
 const recipesDelete = async (req = request, res = response) => {
     const { id } = req.params;
 

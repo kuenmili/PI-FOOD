@@ -33,7 +33,6 @@ const reducer = (state = initialState, {type, payload}) => {
                 diets: payload,
             };
         case GET_RECIPE_DETAIL:
-          console.log(payload);
             return {
                 ...state,
                 detail: payload,

@@ -77,11 +77,12 @@ const Form = () => {
   
     
   return (
-        <div className={style.form}>
+        <div className={style.all}>
           <div className={style.divButton}>
-            <button onClick={() => history.push('/home')}>Back</button>
+            <img className= { style.img } src={process.env.PUBLIC_URL + '/Form.png'} alt="Landing" />
           </div>
-          <form onSubmit={handleSubmit} >
+
+          <form onSubmit={handleSubmit} className={style.form}>
             <div>
               <h2>Create Your Recipe!</h2>
             </div>
@@ -103,8 +104,8 @@ const Form = () => {
               </label>
             </div>
 
-            <div>
               <label htmlFor="steps">Steps: </label>
+            <div>
               <textarea type="text" value= {recipeData.steps} name='steps'placeholder='Enter steps' onChange={handleChange}  max='10' min='1'/>       
             </div>
 
@@ -127,7 +128,7 @@ const Form = () => {
                     }
                 </ul>
 
-            <button type="submit">Create</button>
+            <button type="submit" className={style.button}>Create</button>
 
           </form>
         </div>

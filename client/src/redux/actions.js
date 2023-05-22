@@ -22,7 +22,7 @@ export const getAllRecipes = () => async (dispatch) => {
 
 export const getAllDiets = () => async (dispatch) => {
     const { data } = await axios.get(`${URL}/diets`);
-    console.log(data);
+    
     dispatch({ type: GET_DIETS, payload: data });
 };
 
@@ -65,8 +65,8 @@ export const createRecipe = (newRecipe) => {
 };
 export const deleteRecipe = (recipeId) => async (dispatch) => {
   
-   await axios.delete(`${URL}/recipes/${recipeId}`);
-  dispatch({ type: DELETE_RECIPE });
+    await axios.delete(`${URL}/recipes/${recipeId}`);
+    dispatch({ type: DELETE_RECIPE });
 };
 
 
