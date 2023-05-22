@@ -1,4 +1,5 @@
-const allDiets = require('../controllers/Diets/getDiets')
+
+const allDiets = require('../controllers/Diets/getDiets');
 
 const getDietsHandler = async (req, res) => {
     try {

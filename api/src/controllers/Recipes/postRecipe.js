@@ -1,20 +1,21 @@
-/*const Recipe = require('../../db');
+const { Recipe } = require('../../db');
 
-const createRecipe = async ( id,
+const createRecipe = async ( 
+    { title,
     healthScore,
-    title,
     image,
     summary,
-    steps ) => {
+    steps } ) => {
+    
     const recipe = await Recipe.create({
-        id,
         healthScore,
         title,
         image,
         summary,
         steps,
-    });
+    });   
+    console.log(recipe);
     return recipe;
 };
 
-module.exports = createRecipe;*/
+module.exports = createRecipe;

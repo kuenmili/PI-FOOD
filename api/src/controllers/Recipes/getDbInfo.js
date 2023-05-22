@@ -1,26 +1,27 @@
 const { Recipe, Diet } = require('../../db');
-const { Op } = require('sequelize');
+
 
 const getRecipesDb = async () => {
     
-    const recipes = await Recipe.findAll();
-    
-    const recipesWithDiets = await Promise.all(
-        recipes.map(async (element) => {
-            const diets = await element.getDiets();
-            const dietsName = diets.map((diet) => diet.name);
-            return { ...element.toJSON(), diets: dietsName };
-        })
-    );
-
-    return recipesWithDiets;
+    return await Recipe.findAll({
+        include: {
+            model: Diet,
+            attributes: ["name"],
+            through: {
+                attributes: [],
+            }
+        }
+    });
 };
 
 const getDbById = async (id) => {
+   
     
     if (!id) throw new Error(`Id required`);
 
     const recipe = await Recipe.findByPk(id);
+
+    console.log("en getDbById: " + recipe);
     
     if (!recipe) return;
 
@@ -44,6 +45,7 @@ const getDbByName = async (name) => {
         {
             include: {
                 model: Diet,
+                attributes: ["name"],
                 through: {
                     attributes: [],
                 },

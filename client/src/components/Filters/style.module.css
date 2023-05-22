@@ -1,0 +1,22 @@
+.container{
+    padding: 20px;
+    align-items: center;
+    
+}
+.select{
+    padding: 5px;
+    margin: 10px;
+    border: none;
+    
+}
+
+.button{
+    margin-top: 10px;
+    border-color: transparent;
+    border-radius: 172px;
+    background-color: #D6770F;
+    text-decoration: none;
+    padding: 5px 20px;
+    color: white;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
+}

@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -26,8 +26,17 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    stepByStep: {
+    steps: {
       type: DataTypes.TEXT,
-    }    
-  });
+    },
+    created:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
+  },
+    {
+      timestamps: false,
+    }
+  );
 };

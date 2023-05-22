@@ -1,9 +1,13 @@
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
-export const GET_SORT_SCORE = 'GET_SORT_SCORE';
-export const GET_SORT_DIET = 'GET_SORT_DIET';
+export const ORDER_BY_DIETS = "ORDER_BY_DIETS";
+export const ORDER_BY_HEALTH_SCORE = "ORDER_BY_HEALTH_SCORE";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const SEARCH_RECIPE = 'SEARCH_RECIPE';
 export const GET_RECIPES = 'GET_RECIPES';
 export const GET_DIETS = 'GET_DIETS';
-export const GET_SORT = 'GET_SORT';
-
+export const ORDER_BY_ORIGIN = "ORDER_BY_ORIGIN";
+export const DELETE_RECIPE = 'DELETE_RECIPE';
+export const TOGGLE_CREATE = "TOGGLE_CREATE";
+export const RECIPE_NOT_FOUND = "RECIPE_NOT_FOUND";
+export const DELETE_FILTERS = "DELETE_FILTERS";

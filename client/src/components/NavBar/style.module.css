@@ -1,7 +1,27 @@
 .mainContainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    border-radius: 15px;
-    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    background-color: #CC9900;    
+    padding: 15px;
+}
+.container{
+    display: flex;
+    
+    
+}
+
+.home{
+    text-decoration: none;
+    color: white;
+    margin: 0px 20px;
+   
+
+}
+
+.form{
+    text-decoration: none;
+    color: white;
+    margin: 0px 20px 0px 20px;
 }

@@ -8,6 +8,9 @@ const {
     getDbById,
     getDbByName,
 } = require('./getDbInfo');
+const { Recipe } = require('../../db');
+
+
 
 // Obtener todas las recetas tanto de la api como de la base de datos
 const getInfo = async () => {
@@ -27,32 +30,55 @@ const getInfoById = async (id) => {
 
     try {
         // información de la api
-        const apiRecipesId = await getApiById(id);
-        if (apiRecipesId) {
-            const recipe = {
-                healthScore: apiRecipesId.healthScore,
-                title: apiRecipesId.title,
-                image: apiRecipesId.image,
-                summary: apiRecipesId.summary,
-                steps: apiRecipesId.analyzedInstructions[0]?.steps,
-                diets: apiRecipesId.diets,
-            };
-
-            return recipe;
+        if(Number(id))
+        {
+            const apiRecipesId = await getApiById(id);
+            if (apiRecipesId) {
+                const recipe = {
+                    healthScore: apiRecipesId.healthScore,
+                    title: apiRecipesId.title,
+                    image: apiRecipesId.image,
+                    summary: apiRecipesId.summary,
+                    steps: apiRecipesId.analyzedInstructions[0]?.steps,
+                    diets: apiRecipesId.diets,
+                };
+                return recipe;
+            }
         }
         // informacion de la db
         const dbRecipesId = await getDbById(id);
         if (dbRecipesId) {
+            console.log(dbRecipesId);
             return dbRecipesId;
         }
         
         throw new Error(`There does not exist a recipe with id: ${id}`);
     } catch (error) {
+        console.log(error);
         throw new Error(error);
     }
 };
 
-const getInfoByName= async (name) => {
+/*const searchRecipesByName = async (req, res) => {
+    const { name } = req.query;
+    console.log(name);
+    
+    try {
+      // Buscar en la base de datos local
+      const dbRecipes = await getDbByName(name);
+      // Realizar la solicitud al API externo
+      const apiResponse = await getApiByName(name);
+  
+      // Combinar los resultados de la base de datos y del API externo
+      const recipes = [...dbRecipes, ...apiResponse];
+  
+      res.json({ recipes });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al buscar las recetas.' });
+    }
+  };*/
+  const getInfoByName= async (name) => {
     
     if (!name) throw new Error(`Name required`);
     
@@ -73,5 +99,6 @@ const getInfoByName= async (name) => {
 module.exports = {
     getInfo,
     getInfoById,
-    getInfoByName,
+    getInfoByName
+   // searchRecipesByName,
 };

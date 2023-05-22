@@ -1,0 +1,29 @@
+.cardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+    margin: 40px ;
+    
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+.components{
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    background-color: #F7F7F7;
+    padding: 30px;
+    
+    
+}
+.paginate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

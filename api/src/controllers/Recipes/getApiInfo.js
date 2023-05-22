@@ -12,7 +12,7 @@ const getApiById = async (id) => {
 const getApiByName = async (name) => {
 
     const { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true`)
-
+   
     return data.results;
 }
 

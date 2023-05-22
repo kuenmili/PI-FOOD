@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+/*import { useSelector } from 'react-redux';
 import style from './style.module.css';
 import Card from '../Card/Card'
 
@@ -23,4 +23,4 @@ const Cards = () => {
     )
 };
 
-export default Cards;
+export default Cards;*/
