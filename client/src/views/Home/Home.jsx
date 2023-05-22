@@ -10,7 +10,9 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const allDiets = useSelector((state) => state.diets.map((diet) => diet.text));
+    console.log('dietas' + allDiets);
     const allCards = useSelector((state => state.recipes));
+    console.log('recetas' + allCards);
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(9);
 
@@ -54,25 +56,23 @@ const Home = () => {
                 </div>
                 
                 <div className={style.cardsContainer}>
-                    {currentCards?.map((card) => {
-                        if(card.created) {
-                          
-                            
-                        card.diets = card.diets?.map((diet) => diet.name)
-                        
-                        }
-                        return (
-                            <div>
-                                <Card 
-                                key={card.id}
-                                id={card.id}
-                                image={card.image}
-                                title={card.title}
-                                diets={card.diets}
-                                />
-                            </div>      
-                        )
-                    })}
+                {
+                currentCards?.map((card) => {
+                    let diets = card.diets;
+                    if (card.created) {
+                        diets = diets?.map((diet) => diet.name);
+                    }
+                    return (
+                    <div key={card.id}>
+                        <Card 
+                        id={card.id}
+                        image={card.image}
+                        title={card.title}
+                        diets={diets}
+                        />
+                    </div>      
+                    )
+                })}
                 
                 </div>
             </div>    

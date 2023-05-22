@@ -59,25 +59,7 @@ const getInfoById = async (id) => {
     }
 };
 
-/*const searchRecipesByName = async (req, res) => {
-    const { name } = req.query;
-    console.log(name);
-    
-    try {
-      // Buscar en la base de datos local
-      const dbRecipes = await getDbByName(name);
-      // Realizar la solicitud al API externo
-      const apiResponse = await getApiByName(name);
-  
-      // Combinar los resultados de la base de datos y del API externo
-      const recipes = [...dbRecipes, ...apiResponse];
-  
-      res.json({ recipes });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Error al buscar las recetas.' });
-    }
-  };*/
+
   const getInfoByName= async (name) => {
     
     if (!name) throw new Error(`Name required`);

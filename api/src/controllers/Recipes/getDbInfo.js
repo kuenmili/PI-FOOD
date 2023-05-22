@@ -45,7 +45,6 @@ const getDbByName = async (name) => {
         {
             include: {
                 model: Diet,
-                attributes: ["name"],
                 through: {
                     attributes: [],
                 },
