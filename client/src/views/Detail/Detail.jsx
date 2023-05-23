@@ -42,9 +42,7 @@ const Detail = () => {
         }
         return null;
     };
-
-    debugger;
-    
+       
     return (
         <div className={style.container}>
             <div className={style.firstpart}>

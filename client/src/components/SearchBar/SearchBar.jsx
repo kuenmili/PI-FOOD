@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { searchRecipe } from '../../redux/actions';
-
+import { useDispatch } from 'react-redux';
 import styles from './style.module.css';
+import { useState } from 'react';
+
 
  const SearchBar = () => {
     const dispatch = useDispatch();
     const [ data, setData ] = useState('');
+    
 
     const handleChange = (event) => {        
-        const value = event.target.value;                 
-        setData(value);
+        const value = event.target.value;      
+        setData(value.toLowerCase());
     }
 
     const onSubmit = (event) => {
         event.preventDefault();
+        console.log(data);
         dispatch(searchRecipe(data));
+        setData("");
     };
     return (
         <form onSubmit={onSubmit} className={styles.form}>

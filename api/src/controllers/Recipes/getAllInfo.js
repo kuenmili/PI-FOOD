@@ -65,9 +65,12 @@ const getInfoById = async (id) => {
     if (!name) throw new Error(`Name required`);
     
     try {
+        
         const dbRecipes = await getDbByName(name);
+        console.log('esto es dbrecipes' + dbRecipes);
         
         const apiRecipes = await getApiByName(name);
+        console.log( apiRecipes);
         
         const allRecipes = dbRecipes.concat(apiRecipes);
         

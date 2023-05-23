@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {  
+    RESET_SEARCH,
     ORDER_BY_ORIGIN,
     DELETE_FILTERS,
     ORDER_BY_NAME,
@@ -36,17 +37,24 @@ export const searchRecipe = (name) => {
   return async (dispatch) => {
     try {
       
-      const response = await axios.get(`${URL}/recipes?title=${name}`);
-      console.log('esto es response' + response);    
+      const response = await axios.get(`${URL}/recipes/?title=${name}`);
+      console.log('esto es response' + response); 
+      console.log(response.data);   
      
       dispatch({
         type: SEARCH_RECIPE,
-        payload: response
+        payload: response.data
       });
     } catch (error) {
       console.log(error);
       
     }
+  };
+};
+
+export const resetSearch = () => {
+  return {
+    type: RESET_SEARCH,
   };
 };
 

@@ -17,9 +17,7 @@ const validation = (recipeData) => {
     if(!recipeData.image.includes('https://')) {
         errors.image = 'Must be a link to an image'
     }
-    if(isNaN(recipeData.healthScore)) {
-        errors.healthScore = 'Health score must be a number'
-    }
+    
     return errors;
 }
 

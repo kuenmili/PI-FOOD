@@ -1,24 +1,32 @@
+import { getAllDiets, getAllRecipes, resetSearch } from '../../redux/actions';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import Paginate from '../../components/Paginated/Paginate';
+import Filters from '../../components/Filters/Filters';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDiets, getAllRecipes } from '../../redux/actions';
-import Card from '../../components/Card/Card'
+import Card from '../../components/Card/Card';
 import { useEffect, useState } from 'react';
 import style from './style.module.css';
-import Filters from '../../components/Filters/Filters';
-import SearchBar from '../../components/SearchBar/SearchBar';
 const Home = () => {
 
     const dispatch = useDispatch();
-    const allDiets = useSelector((state) => state.diets.map((diet) => diet.text));
-    console.log('dietas' + allDiets);
+
+    const allDiets = useSelector((state) => state.diets.map((diet) => diet.text));    
     const allCards = useSelector((state => state.recipes));
-    console.log('recetas' + allCards);
+    const filteredRecipes = useSelector((state) => state.filteredRecipes);
+
+    
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(9);
 
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentCards = allCards.slice(indexOfFirstCard, indexOfLastCard);
+    const currentCards = (
+        filteredRecipes.length > 0 
+        ? filteredRecipes 
+        : allCards).slice(
+        indexOfFirstCard,
+        indexOfLastCard
+      );
     
 
     const paginate = (pageNumber) => {
@@ -26,15 +34,15 @@ const Home = () => {
     };
     const setFirtsPage = () => {
         setCurrentPage(1);
-      };
-      
+    };      
 
     useEffect(() => {
         dispatch(getAllRecipes());
         dispatch(getAllDiets());
+        dispatch(resetSearch());
     }, [dispatch]);
 
-    debugger;
+    
     
     return (
         <div>
@@ -57,7 +65,7 @@ const Home = () => {
                 
                 <div className={style.cardsContainer}>
                 {
-                currentCards?.map((card) => {
+                    currentCards.map((card) => {
                     let diets = card.diets;
                     if (card.created) {
                         diets = diets?.map((diet) => diet.name);
@@ -81,4 +89,4 @@ const Home = () => {
     )
 };
 
-export default Home;
+export default Home; 

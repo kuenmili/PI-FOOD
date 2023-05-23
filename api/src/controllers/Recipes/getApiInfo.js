@@ -12,8 +12,22 @@ const getApiById = async (id) => {
 const getApiByName = async (name) => {
 
     const { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true`)
-   
-    return data.results;
+   console.log(data.results);
+   if(data.results){
+    const recipes = data.results.map(recipe => {
+        return{
+            id: recipe.id,
+            title: recipe.title,
+            image: recipe.image,
+            steps: recipe.analyzedInstructions[0]?.steps.map(step => (step.number, step.step)),
+            summary: recipe.summary,
+            diets: recipe.diets,
+            healthScore: recipe.healthScore
+        }
+    })
+    console.log(recipes);
+    return recipes;
+   }
 }
 
 const getApi = async () => {

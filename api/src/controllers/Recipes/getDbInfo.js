@@ -1,4 +1,5 @@
 const { Recipe, Diet } = require('../../db');
+const { Op } = require("sequelize")
 
 
 const getRecipesDb = async () => {
@@ -53,6 +54,7 @@ const getDbByName = async (name) => {
     );
     
     if (!recipe) throw new Error(`There does not exist recipes with name: ${name}`);
+    
     
     return recipe;
 };

@@ -9,7 +9,8 @@ import {
     CREATE_RECIPE,
     GET_RECIPES,
     GET_DIETS,
-    GET_RECIPE_DETAIL    
+    GET_RECIPE_DETAIL,
+    RESET_SEARCH    
 } from './action-types';
 
 const initialState = {
@@ -49,10 +50,16 @@ const reducer = (state = initialState, {type, payload}) => {
               };
         
         case SEARCH_RECIPE:
+          console.log(payload);
           return {
             ...state,
             filteredRecipes: payload
           };
+          case RESET_SEARCH:
+            return {
+              ...state,
+              filteredRecipes: [],
+            };
 
         case ORDER_BY_NAME:
           const byName =

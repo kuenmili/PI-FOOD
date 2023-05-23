@@ -46,7 +46,7 @@ const Form = () => {
   };
     
   function handleSelect(event){
-    debugger;
+   
     // eslint-disable-next-line eqeqeq
     let filteredDiet = diets.find(el => el.value == event.target.value)
 
@@ -61,17 +61,20 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    dispatch(createRecipe(recipeData));
-   
-    setRecipeData({
-      title: '',
-      summary: '',
-      healthScore: '',
-      diets: [],
-      steps: '',
-      image: '',      
-    });    
-    history.push('/home');  
+    if(errors.title || errors.summary || errors.image) window.alert('Information required')
+    
+    else{
+      dispatch(createRecipe(recipeData));
+      setRecipeData({
+        title: '',
+        summary: '',
+        healthScore: '',
+        diets: [],
+        steps: '',
+        image: '',      
+      });    
+      history.push('/home');  
+    }
   };   
 
   

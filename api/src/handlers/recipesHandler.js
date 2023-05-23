@@ -59,9 +59,10 @@ const getByIdHandler = async (req, res) => {
 
 const getByNameHandler = async (req, res) => {
     
-    const { name } = req.query;
+    const { title } = req.query;
+    console.log(title);
     try {
-        const recipes = name ? await getInfoByName(name) : await getInfo();
+        const recipes = title ? await getInfoByName(title) : await getInfo();
         res.status(200).json(recipes);
     } catch (error) {
         console.log(error);
