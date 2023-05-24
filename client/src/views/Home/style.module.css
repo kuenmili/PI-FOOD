@@ -1,6 +1,7 @@
 .cardsContainer{
     display: flex;
     flex-wrap: wrap;
+    flex: 1;
     justify-content:center;
     align-items: center;
     margin: 40px ;
@@ -10,12 +11,12 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
-    
+    min-height: 100vh;   
 }
 .components{
     display: flex;
-    width: 30%;
+    flex-shrink: 0;
+    width: 20%;
     flex-direction: column;
     background-color: #F7F7F7;
     padding: 30px;
@@ -30,3 +31,9 @@
     
 }
 
+.recipes{
+    padding: 20px 0 20px;
+    color: #7B9029;
+    font-family: 'Cherolina';
+    font-size: 70px;
+}

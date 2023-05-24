@@ -1,4 +1,4 @@
-import { getAllDiets, getAllRecipes, resetSearch } from '../../redux/actions';
+import { getAllDiets, getAllRecipes, deleteFilters } from '../../redux/actions';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Paginate from '../../components/Paginated/Paginate';
 import Filters from '../../components/Filters/Filters';
@@ -6,14 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
 import { useEffect, useState } from 'react';
 import style from './style.module.css';
+
 const Home = () => {
 
-    const dispatch = useDispatch();
-
-    const allDiets = useSelector((state) => state.diets.map((diet) => diet.text));    
+    const dispatch = useDispatch();   
     const allCards = useSelector((state => state.recipes));
     const filteredRecipes = useSelector((state) => state.filteredRecipes);
-
     
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(9);
@@ -26,8 +24,7 @@ const Home = () => {
         : allCards).slice(
         indexOfFirstCard,
         indexOfLastCard
-      );
-    
+      );    
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber)
@@ -38,27 +35,26 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getAllRecipes());
-        dispatch(getAllDiets());
-        dispatch(resetSearch());
-    }, [dispatch]);
-
-    
+        dispatch(getAllDiets());       
+    }, [dispatch]);  
     
     return (
-        <div>
+        <div >
             <div className={style.paginate}>                
                 <Paginate
                 cardsPerPage={cardsPerPage}
                 allCards={allCards.length}
                 paginate={paginate}
+                currentPage={currentPage}
                 />
             </div>
             <div className={style.container}>
                 <div className={style.components}>
                     <SearchBar/>
-
-                    <Filters
-                    allDiets={allDiets}
+                    <Filters  
+                    deleteFilters={deleteFilters}
+                    getAllDiets={getAllDiets}
+                    getAllRecipes={getAllRecipes}                 
                     setFirtsPage={setFirtsPage}
                     />
                 </div>
@@ -70,21 +66,18 @@ const Home = () => {
                     if (card.created) {
                         diets = diets?.map((diet) => diet.name);
                     }
-                    return (
-                    <div key={card.id}>
+                    return (                    
                         <Card 
                         id={card.id}
                         image={card.image}
                         title={card.title}
                         diets={diets}
-                        />
-                    </div>      
+                        />                          
                     )
                 })}
                 
                 </div>
-            </div>    
-            
+            </div>            
         </div>
     )
 };

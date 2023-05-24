@@ -15,14 +15,11 @@ const getRecipesDb = async () => {
     });
 };
 
-const getDbById = async (id) => {
-   
+const getDbById = async (id) => {   
     
     if (!id) throw new Error(`Id required`);
 
-    const recipe = await Recipe.findByPk(id);
-
-    console.log("en getDbById: " + recipe);
+    const recipe = await Recipe.findByPk(id);    
     
     if (!recipe) return;
 
@@ -54,8 +51,7 @@ const getDbByName = async (name) => {
     );
     
     if (!recipe) throw new Error(`There does not exist recipes with name: ${name}`);
-    
-    
+   
     return recipe;
 };
 

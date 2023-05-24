@@ -5,8 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import style from './style.module.css';
 
-
-
 const Form = () => {
 
   const dispatch = useDispatch();
@@ -45,24 +43,24 @@ const Form = () => {
       }))
   };
     
-  function handleSelect(event){
+  const handleSelect = (event) => {   
    
-    // eslint-disable-next-line eqeqeq
-    let filteredDiet = diets.find(el => el.value == event.target.value)
+    const filteredDiet = diets.find(el => el.value === event.target.value)
 
     setRecipeData({
         ...recipeData,
         diets: [...recipeData.diets, filteredDiet],
     })
     setDietsSelected([...dietsSelected, filteredDiet]);
-}
-  
-  
+  }
+
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     
-    if(errors.title || errors.summary || errors.image) window.alert('Information required')
     
+    if (recipeData.title === "" ){
+      alert('Fill in the required blanks')
+    }
     else{
       dispatch(createRecipe(recipeData));
       setRecipeData({
@@ -72,12 +70,11 @@ const Form = () => {
         diets: [],
         steps: '',
         image: '',      
-      });    
+      });   
+      window.alert('Recipe created successfully'); 
       history.push('/home');  
-    }
-  };   
-
-  
+    }    
+  };  
     
   return (
         <div className={style.all}>
@@ -86,53 +83,47 @@ const Form = () => {
           </div>
 
           <form onSubmit={handleSubmit} className={style.form}>
-            <div>
-              <h2>Create Your Recipe!</h2>
-            </div>
+            
+            <h2 className={style.create}>Create Your Recipe!</h2>
 
-            <div>
-              <input type="text" name="title" placeholder="Recipe's name" value={recipeData.title} onChange={handleChange}/>
+            <input type="text" name="title" placeholder="Recipe's name" value={recipeData.title} onChange={handleChange}/>
               {errors.title && <p className={style.error}>{errors.title}</p>}
-            </div>
 
-            <div>
-              <input type="text" name="summary" placeholder="Recipe's summary" value={recipeData.summary} onChange={handleChange}/>
+            <textarea type="text" name="summary" placeholder="Recipe's summary" value={recipeData.summary} onChange={handleChange} className={style.summary}/>
               {errors.summary && <p className={style.error}>{errors.summary}</p>}
-            </div>
 
             <p>Heath Score: </p>
+
             <div className={style.rating}>
               <label htmlFor="healthScore">
               <input type="number" name="healthScore" placeholder="Health Score" value={recipeData.healthScore} onChange={handleChange} />
+                {errors.healthScore && <p className={style.error}>{errors.healthScore}</p>} 
               </label>
             </div>
 
-              <label htmlFor="steps">Steps: </label>
-            <div>
-              <textarea type="text" value= {recipeData.steps} name='steps'placeholder='Enter steps' onChange={handleChange}  max='10' min='1'/>       
-            </div>
+            <label htmlFor="steps">Steps: </label>
+            
+            <textarea type="text" value= {recipeData.steps} name='steps'placeholder='Enter steps' onChange={handleChange}  className={style.steps}/>       
+              {errors.steps && <p className={style.error}>{errors.steps}</p>}
 
-            <div>
-              <input type="text" name= 'image' placeholder="Image's Url" value={recipeData.image} onChange={handleChange}/>
+            <input type="text" name= 'image' placeholder="Image's Url" value={recipeData.image} onChange={handleChange}/>
               {errors.image && <p className={style.error}>{errors.image}</p>}
-            </div>
-
+            
             <select name="diets" onChange={(event)=> handleSelect(event)}>
-                    {diets.map((el)=> {
-                      console.log(diets);
-                        return (
-                            <option value={el.value}>{el.text}</option>
+              {diets.map((el)=> {
+                return (
+                        <option value={el.value}>{el.text}</option>
                         )
-                    })} 
-                </select>
-                <ul>
-                    {
-                        dietsSelected.map(el => <li>{el.text}</li>)
-                    }
-                </ul>
+                })
+              } 
+            </select>
+            <ul>
+              {
+                dietsSelected.map(el => <li>{el.text}</li>)
+              }
+            </ul>
 
             <button type="submit" className={style.button}>Create</button>
-
           </form>
         </div>
     )

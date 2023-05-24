@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {  
-    RESET_SEARCH,
     ORDER_BY_ORIGIN,
     DELETE_FILTERS,
     ORDER_BY_NAME,
@@ -35,44 +34,22 @@ export const getRecipeDetail = (id) => async (dispatch) => {
 
 export const searchRecipe = (name) => {
   return async (dispatch) => {
-    try {
-      
       const response = await axios.get(`${URL}/recipes/?title=${name}`);
-      console.log('esto es response' + response); 
-      console.log(response.data);   
-     
       dispatch({
         type: SEARCH_RECIPE,
-        payload: response.data
+        payload: response.data      
       });
-    } catch (error) {
-      console.log(error);
-      
-    }
   };
 };
-
-export const resetSearch = () => {
-  return {
-    type: RESET_SEARCH,
-  };
-};
-
 
 export const createRecipe = (newRecipe) => {
-    return async function () {
-        try {
+    return async function () {       
             const res = await axios.post(`${URL}/recipes`, newRecipe);
-            
-            return res;
-            
-        } catch (error) {
-            console.log(error);
-        }
+            return res;            
     };
 };
-export const deleteRecipe = (recipeId) => async (dispatch) => {
-  
+export const deleteRecipe = (recipeId) => 
+  async (dispatch) => {
     await axios.delete(`${URL}/recipes/${recipeId}`);
     dispatch({ type: DELETE_RECIPE });
 };
@@ -114,6 +91,7 @@ export const deleteRecipe = (recipeId) => async (dispatch) => {
       });
     };
   };
+  
   export const orderByOrigin = (payload) => {
     return (dispatch) => {
       return dispatch({

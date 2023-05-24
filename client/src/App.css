@@ -12,9 +12,11 @@ html, body {
 }
 #content {
   flex-grow: 1;
+  background-color: #61dafb;
 }
 .App {
   text-align: center;
+  
 }
 
 .App-logo {

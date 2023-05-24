@@ -3,22 +3,11 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: center;
-    
-  
+    justify-content: center;  
 }
-.paginate .page-item{
-    margin: 0 5px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    background-color: #0d6efd;
-    border: 1px solid #0d6efd;
-    border-radius: 5px;
-    padding: 5px 10px;
-    transition: all 4.s;
- 
 
+.pageList{
+    padding: 5px;
 }
 
 .number{    
@@ -40,3 +29,10 @@
     margin: 20px 0 20px 0; 
 }
 
+.active{
+    background-color: #7B9029;
+    padding: 5px;
+    border-radius: 10px;
+    color: #fff;
+    margin: 0 5px 0 5px;
+}

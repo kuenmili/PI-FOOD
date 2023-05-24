@@ -15,11 +15,11 @@ import { useState } from 'react';
     }
 
     const onSubmit = (event) => {
-        event.preventDefault();
-        console.log(data);
+        event.preventDefault();        
         dispatch(searchRecipe(data));
         setData("");
     };
+    
     return (
         <form onSubmit={onSubmit} className={styles.form}>
             <input

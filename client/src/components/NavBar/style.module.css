@@ -16,12 +16,18 @@
     text-decoration: none;
     color: white;
     margin: 0px 20px;
-   
-
+}
+.home:hover{
+    text-decoration: underline;
 }
 
 .form{
     text-decoration: none;
     color: white;
     margin: 0px 20px 0px 20px;
+}
+
+.form:hover{
+    text-decoration: underline;
+    
 }

@@ -12,7 +12,7 @@ const getApiById = async (id) => {
 const getApiByName = async (name) => {
 
     const { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true`)
-   console.log(data.results);
+   
    if(data.results){
     const recipes = data.results.map(recipe => {
         return{
@@ -25,7 +25,7 @@ const getApiByName = async (name) => {
             healthScore: recipe.healthScore
         }
     })
-    console.log(recipes);
+    
     return recipes;
    }
 }

@@ -1,47 +1,46 @@
-
 import { useDispatch, useSelector } from 'react-redux';
 import {
   orderByName,
   orderByHealtScore,
   orderByDiets,
-  deleteFilters,
   orderByOrigin,
 } from '../../redux/actions';
 import styles from './style.module.css';
 
- const Filters = (props) => {   
+const Filters = (props) => {
+  
+  const allDiets = useSelector((state) =>
+    state.diets.map((diet) => diet.text)
+  );
+  const dispatch = useDispatch();
 
-    const allDiets = useSelector(state => state.diets.map((diet) => diet.text))
-    const dispatch = useDispatch();
-    
-    const handlerOrderByName = (event) => {
-      const value = event.target.value;
-        dispatch(orderByName(value));
-    };
-    const handlerOrderByHealtScore = (event) => {
-      const value = event.target.value;
-        dispatch(orderByHealtScore(value));
-    };
+  const handlerOrderByName = (event) => {
+    const value = event.target.value;
+    dispatch(orderByName(value));
+  };
 
-    const handlerOrderByDiets = (event) => {
-      const value = event.target.value;
-        props.setFirtsPage();
-        dispatch(orderByDiets(value));
-    };
+  const handlerOrderByHealtScore = (event) => {
+    const value = event.target.value;
+    dispatch(orderByHealtScore(value));
+  };
 
-    const handlerOrderByOrigin = (event) => {
-      const value = event.target.value;
-        props.setFirtsPage();
-        dispatch(orderByOrigin(value));
-    };
+  const handlerOrderByDiets = (event) => {
+    const value = event.target.value;
+    props.setFirtsPage();
+    dispatch(orderByDiets(value));
+  };
 
-    const handlerResetFilters = () => {
-        document.getElementById('diet').value = 'all';
-        document.getElementById('origin').value = 'Filter by Origin';
-        document.getElementById('alfabetico').value = 'Order by A-Z';
-        document.getElementById('healtscore').value = 'Order by HealtScore';
-        dispatch(deleteFilters());
-    };
+  const handlerOrderByOrigin = (event) => {
+    const value = event.target.value;
+    props.setFirtsPage();
+    dispatch(orderByOrigin(value));
+  };
+
+  const handlerResetFilters = () => {
+    dispatch(props.deleteFilters());
+    dispatch(props.getAllRecipes());
+    dispatch(props.getAllDiets());
+  };
 
   return (
     <div className={styles.container}>
@@ -70,7 +69,7 @@ import styles from './style.module.css';
         <option disabled value='Filter by Origin'>
           Filter by Origin
         </option>
-        <option value="All">All</option>
+        <option value='All'>All</option>
         <option value='DataBase'>Data Base</option>
         <option value='API'>API</option>
       </select>
@@ -84,8 +83,8 @@ import styles from './style.module.css';
         <option disabled value='Order by A-Z'>
           Order by A-Z
         </option>
-        <option value='ascendente'>Ascendente</option>
-        <option value='descendente'>Descendente</option>
+        <option value='ascendente'>A - Z</option>
+        <option value='descendente'>Z - A</option>
       </select>
 
       <select

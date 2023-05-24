@@ -6,7 +6,7 @@
   border-radius: 47px;
   background: #fff;
   box-shadow: 1px 6px 7px rgba(0, 0, 0, 0.35);
-  margin: 30px;
+  margin: 20px;
   width: 40%;
   padding: 10px;
 }
@@ -16,6 +16,11 @@
     flex-direction: column;
     width: 200px;
     margin-bottom: 40px;
+  }
+  .create{
+    margin-bottom: 10px;
+    text-decoration: underline;
+    color: #D6770F;
   }
 
   .diets{
@@ -51,6 +56,23 @@
     transform: translateY(-25%);
   }
 
-  
+  .error{
+    color: red;
+    font-size: 12px;
+
+  }
+
+  .summary{
+    width: 400px;
+    height: 100px;
+    text-align: start;    
+  }
+
+  .steps{
+    width: 400px;
+    height: 100px;
+    text-align: start;  
+    margin-bottom: 10px;
+  }
     
   

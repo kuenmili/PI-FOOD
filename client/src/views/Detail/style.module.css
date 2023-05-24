@@ -5,19 +5,47 @@
     
 
 }
+
+.apiSteps{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 30px;
+    
+}
 .steps{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    margin: 10px 5px 10px 5px;
     background-color: #F7F7F7;
     text-align: left;
+    width: 40%;
+    border: 2px solid #ececec;
+    padding: 15px 0 15px 0 ;
+}
+.icon{
+    width: 20px;
+    height: 20px;
+    background-color: #7B9029;
+    border-radius: 40px;
+    padding: 10px;
+    color: #7B9029;
+}
+.steps:hover{
+    background-color: #7B9029;
+    transition: 0.4s;
+    color: white;
+}
+.ul{
+    list-style:circle;
 }
 .img{
     width: 50%;
     height: 50%;
     padding: 25px;
-    border-radius: 5%;
+    border-radius: 10px;
 }
 h2{
 
@@ -44,15 +72,24 @@ h2{
     padding: 50px;
 }
 
+.containerDelete{
+    display: flex;
+    justify-content: center;
+}
+
 .buttonDelete{
+    border-color: transparent;
     border-radius: 172px;
     background-color: #D6770F;
-    border-color: transparent;
     text-decoration: none;
-    padding: 7px 30px;
+    padding: 3px 5px;
     color: white;
+    margin: 20px 0 20px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
-    margin: 20px 0px 20px 0px;
+    transition: .3s ease;
+}
+.buttonDelete:hover{
+    transform: translateY(-25%);
 }
 
 .health{
@@ -64,6 +101,25 @@ h2{
     margin-bottom: 20px;
 }
 .step{
-    max-width: 40%;
+    max-width: 90%;
     text-align: left;
+    margin: 10px 0 10px
+}
+
+.dbSteps{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin: 10px 30% 10px 30%;   
+    border: 2px solid #ececec;
+    padding: 15px 50px 15px 50px;
+    border-radius: 10px;
+}
+
+.dbSteps:hover{
+    background-color: #7B9029;
+    transition: 0.4s;
+    color: white;
 }

@@ -7,7 +7,8 @@ const Landing = () => {
         <div className={style.frame}>
             <div className={style.container}>
                 <div >
-                    <h1 >Homemade Flavors</h1>
+                    <p className={style.recipes}>Recipes</p>
+                    <h1 className={style.flavors}>Homemade Flavors</h1>
                     <Link to='/home' className={style.btn}>Home</Link>
                 </div>
                 

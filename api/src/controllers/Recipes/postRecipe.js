@@ -14,7 +14,7 @@ const createRecipe = async (
         summary,
         steps,
     });   
-    console.log(recipe);
+    
     return recipe;
 };
 

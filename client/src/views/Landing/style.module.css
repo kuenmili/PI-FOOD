@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,800;1,400&display=swap');
-
+@font-face {
+  font-family: 'Cherolina';
+  src: url('../../../public/Cherolina.ttf') ;
+}
 
     ::-webkit-scrollbar {
         width: 12px;
@@ -22,6 +25,11 @@
     margin: 0;
     font-family: 'Poppins', sans-serif;
     
+}
+.recipes{
+  font-family: 'Cherolina';
+  font-size: 90px;
+  color: #F0D290;
 }
 
 h1{

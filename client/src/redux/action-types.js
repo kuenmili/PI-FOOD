@@ -8,7 +8,4 @@ export const GET_RECIPES = 'GET_RECIPES';
 export const GET_DIETS = 'GET_DIETS';
 export const ORDER_BY_ORIGIN = "ORDER_BY_ORIGIN";
 export const DELETE_RECIPE = 'DELETE_RECIPE';
-export const TOGGLE_CREATE = "TOGGLE_CREATE";
-export const RECIPE_NOT_FOUND = "RECIPE_NOT_FOUND";
 export const DELETE_FILTERS = "DELETE_FILTERS";
-export const RESET_SEARCH = "RESET_SEARCH";

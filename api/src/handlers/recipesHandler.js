@@ -1,13 +1,10 @@
 const { Recipe } = require('../db')
 const {  
     getInfoById,
- //   searchRecipesByName
     getInfoByName,
     getInfo
 } = require('../controllers/Recipes/getAllInfo');
 const createRecipe = require('../controllers/Recipes/postRecipe')
-
-
 
 const createRecipeHandler = async (req, res) => {   
     const {
@@ -18,7 +15,6 @@ const createRecipeHandler = async (req, res) => {
         summary,
         steps,
     } = req.body;  
-    console.log(diets.value);  
     try {
         const recipe = await createRecipe({
             healthScore,
@@ -27,52 +23,38 @@ const createRecipeHandler = async (req, res) => {
             summary,
             steps,
         });
-
-        console.log(diets);
-
-        diets.forEach(async (diet) => {
-            
+        diets.forEach(async (diet) => {            
             await recipe.addDiet(diet.value);
         });
-
         res.status(201).json('Recipe successfully created!');
-    } catch (error) {
-        
+    } catch (error) {        
         res.status(400).send({ error : error.message })
     }
 };
 
 const getByIdHandler = async (req, res) => {
-
     const { id } = req.params;
-    try {
-        console.log(id);
+    try {       
         const recipe = await getInfoById(id);
         res.status(200).json(recipe);
-    } catch (error) {
-        console.log(error);
+    } catch (error) {       
         res.status(400).json({ error: error.message });
     }
 };
 
-
-
 const getByNameHandler = async (req, res) => {
     
-    const { title } = req.query;
-    console.log(title);
+    const { title } = req.query;    
     try {
         const recipes = title ? await getInfoByName(title) : await getInfo();
         res.status(200).json(recipes);
     } catch (error) {
-        console.log(error);
         res.status(400).json({ error: error.message });
     }
 };
 
 const recipesDelete = async (req = request, res = response) => {
     const { id } = req.params;
-
     try {
         const recipeToDelete = await Recipe.findByPk(id);
         await recipeToDelete.destroy();
@@ -84,13 +66,11 @@ const recipesDelete = async (req = request, res = response) => {
         res.status(400).json({ error: error.message });
     }
 };
-
 module.exports = {
     createRecipeHandler,
     getByIdHandler,
     getByNameHandler,
     recipesDelete,
- //   handleSearchRecipesByName
 };
 
 
