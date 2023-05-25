@@ -4,16 +4,18 @@ import {
   orderByHealtScore,
   orderByDiets,
   orderByOrigin,
+  deleteFilters,
 } from '../../redux/actions';
 import styles from './style.module.css';
 
 const Filters = (props) => {
+
+  const dispatch = useDispatch();
   
   const allDiets = useSelector((state) =>
     state.diets.map((diet) => diet.text)
   );
-  const dispatch = useDispatch();
-
+  
   const handlerOrderByName = (event) => {
     const value = event.target.value;
     dispatch(orderByName(value));
@@ -26,20 +28,18 @@ const Filters = (props) => {
 
   const handlerOrderByDiets = (event) => {
     const value = event.target.value;
-    props.setFirtsPage();
+    props.setFirtsPage(1);
     dispatch(orderByDiets(value));
   };
 
   const handlerOrderByOrigin = (event) => {
     const value = event.target.value;
-    props.setFirtsPage();
+    props.setFirtsPage(1);
     dispatch(orderByOrigin(value));
   };
 
-  const handlerResetFilters = () => {
-    dispatch(props.deleteFilters());
-    dispatch(props.getAllRecipes());
-    dispatch(props.getAllDiets());
+  const handlerResetFilters = () => {   
+    dispatch(deleteFilters())
   };
 
   return (
@@ -53,10 +53,10 @@ const Filters = (props) => {
         <option disabled value='all'>
           Filter by Diet
         </option>
-        {allDiets.map((diet, index) => (
-          <option key={index} value={diet}>
-            {diet}
-          </option>
+          {allDiets.map((diet, index) => (
+            <option key={index} value={diet}>
+              {diet}
+            </option>
         ))}
       </select>
 
@@ -100,7 +100,7 @@ const Filters = (props) => {
         <option value='descendente'>Less Healthy</option>
       </select>
 
-      <button onClick={handlerResetFilters} className={styles.button}>
+      <button onClick={ (event) => {handlerResetFilters(event)}} className={styles.button}>
         Reset Filters
       </button>
     </div>

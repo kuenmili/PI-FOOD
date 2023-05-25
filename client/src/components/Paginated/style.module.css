@@ -23,7 +23,8 @@
 }
 
 .section{
-    display: flex;    
+    display: flex;   
+    justify-content: center; 
     width: 40%;
     background-color: #ffffff;  
     margin: 20px 0 20px 0; 
@@ -34,5 +35,13 @@
     padding: 5px;
     border-radius: 10px;
     color: #fff;
-    margin: 0 5px 0 5px;
+    margin: 0 5px 0 5px;    
+}
+
+.prevnext:hover{
+    color: #CC9900;    
+}
+
+.prevnext{
+    padding: 5px;
 }

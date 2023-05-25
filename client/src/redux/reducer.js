@@ -17,7 +17,8 @@ const initialState = {
   filteredRecipes: [],
     recipes: [],
     detail: {},
-    diets: [],      
+    diets: [], 
+    search: [],      
 };
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -71,7 +72,7 @@ const reducer = (state = initialState, {type, payload}) => {
           : [...state.recipes];
         return {  
           ...state,
-          recipes: byName,
+          filteredRecipes: byName,
         };
       case ORDER_BY_HEALTH_SCORE:
         const byHealtScore =
@@ -90,7 +91,7 @@ const reducer = (state = initialState, {type, payload}) => {
           : [...state.recipes];
         return {
           ...state,
-          recipes: byHealtScore,
+          filteredRecipes: byHealtScore,
         };
       case ORDER_BY_DIETS:
         const filtrado = state.recipes.filter((elemento) =>
@@ -100,7 +101,7 @@ const reducer = (state = initialState, {type, payload}) => {
         );
         return {
           ...state,
-          recipes: filtrado,
+          filteredRecipes: filtrado,
         };
       case ORDER_BY_ORIGIN:
         const recipes = state.recipes;
@@ -109,7 +110,7 @@ const reducer = (state = initialState, {type, payload}) => {
         : recipes.filter(recipe => !recipe.created);      
         return {
           ...state,
-          recipes: payload === "All" 
+          filteredRecipes: payload === "All" 
           ? state.recipes
           : sort
         };                

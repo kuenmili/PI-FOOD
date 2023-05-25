@@ -1,17 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import style from './style.module.css';
 
+
 const Paginate = ({ cardsPerPage, allCards, paginate, currentPage }) => {
-    const pageNumber = [];
+    
+  const pageNumber = [];
   
-    for (let i = 0; i < Math.ceil(allCards / cardsPerPage); i++) {
-      pageNumber.push(i + 1);
-    }
+  for (let i = 0; i < Math.ceil(allCards / cardsPerPage); i++) {
+    pageNumber.push(i + 1);
+  }
   
     const renderPageNumbers = () => {
       if (pageNumber.length <= 2) {
         return pageNumber.map((number) => (
-          
           <ul className={currentPage === number ? style.active : ''} key={number}>
             <a onClick={() => paginate(number)} className={style.pageList}>{number}</a>
           </ul>
@@ -24,24 +25,25 @@ const Paginate = ({ cardsPerPage, allCards, paginate, currentPage }) => {
           pageNumbersToRender = pageNumber.slice(-2);
         } else {
           pageNumbersToRender = pageNumber.slice(currentPage - 2, currentPage);
-        }  
+        }
+  
         return pageNumbersToRender.map((number) => (
-          <ul className={currentPage === number ? style.active : ''} key={number}>            
+          <ul className={currentPage === number ? style.active : ''} key={number}>
             <a onClick={() => paginate(number)} className={style.pageList}>{number}</a>
           </ul>
         ));
       }
     };
-
+  
     return (
       <section className={style.section}>
         <ul className={style.paginate}>
           <ul>
-            <a onClick={() => paginate(currentPage - 1)}>Prev</a>
+            <a onClick={() => paginate(currentPage - 1)} className={style.prevnext}>Prev</a>
           </ul>
           {renderPageNumbers()}
           <ul>
-            <a onClick={() => paginate(currentPage + 1)}>Next</a>
+            <a onClick={() => paginate(currentPage + 1)} className={style.prevnext} >Next</a>
           </ul>
         </ul>
       </section>

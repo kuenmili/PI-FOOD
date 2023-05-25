@@ -21,13 +21,11 @@ export const getAllRecipes = () => async (dispatch) => {
 };
 
 export const getAllDiets = () => async (dispatch) => {
-    const { data } = await axios.get(`${URL}/diets`);
-    
+    const { data } = await axios.get(`${URL}/diets`);    
     dispatch({ type: GET_DIETS, payload: data });
 };
 
-export const getRecipeDetail = (id) => async (dispatch) => {
-       
+export const getRecipeDetail = (id) => async (dispatch) => {       
     const { data } = await axios.get(`${URL}/recipes/${id}`);
     dispatch({ type: GET_RECIPE_DETAIL, payload: data });
 };
@@ -44,8 +42,8 @@ export const searchRecipe = (name) => {
 
 export const createRecipe = (newRecipe) => {
     return async function () {       
-            const res = await axios.post(`${URL}/recipes`, newRecipe);
-            return res;            
+      const res = await axios.post(`${URL}/recipes`, newRecipe);
+      return res;            
     };
 };
 export const deleteRecipe = (recipeId) => 

@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import style from './style.module.css';
 
+
+
 const Form = () => {
 
   const dispatch = useDispatch();
@@ -44,9 +46,8 @@ const Form = () => {
   };
     
   const handleSelect = (event) => {   
-   
-    const filteredDiet = diets.find(el => el.value === event.target.value)
-
+    // eslint-disable-next-line eqeqeq
+    const filteredDiet = diets.find(el => el.value == event.target.value)
     setRecipeData({
         ...recipeData,
         diets: [...recipeData.diets, filteredDiet],
@@ -55,13 +56,9 @@ const Form = () => {
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     
-    
-    if (recipeData.title === "" ){
-      alert('Fill in the required blanks')
-    }
-    else{
+    if(recipeData.title !== ""){
       dispatch(createRecipe(recipeData));
       setRecipeData({
         title: '',
@@ -70,11 +67,15 @@ const Form = () => {
         diets: [],
         steps: '',
         image: '',      
-      });   
+      })
       window.alert('Recipe created successfully'); 
       history.push('/home');  
-    }    
-  };  
+      }  
+       else {
+        alert("Must fill in the blanks")
+    }
+  }
+    
     
   return (
         <div className={style.all}>

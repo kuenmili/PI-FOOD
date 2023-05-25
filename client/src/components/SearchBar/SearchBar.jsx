@@ -6,13 +6,12 @@ import { useState } from 'react';
 
  const SearchBar = () => {
     const dispatch = useDispatch();
-    const [ data, setData ] = useState('');
-    
+    const [ data, setData ] = useState('');    
 
     const handleChange = (event) => {        
         const value = event.target.value;      
         setData(value.toLowerCase());
-    }
+    };
 
     const onSubmit = (event) => {
         event.preventDefault();        

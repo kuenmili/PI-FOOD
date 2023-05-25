@@ -9,7 +9,9 @@ import style from './style.module.css';
 
 const Home = () => {
 
-    const dispatch = useDispatch();   
+    const dispatch = useDispatch();
+
+   
     const allCards = useSelector((state => state.recipes));
     const filteredRecipes = useSelector((state) => state.filteredRecipes);
     
@@ -40,7 +42,8 @@ const Home = () => {
     
     return (
         <div >
-            <div className={style.paginate}>                
+            <div className={style.paginate}> 
+                <h2 className={style.recipes}>Recipes</h2>               
                 <Paginate
                 cardsPerPage={cardsPerPage}
                 allCards={allCards.length}
@@ -77,7 +80,8 @@ const Home = () => {
                 })}
                 
                 </div>
-            </div>            
+            </div>
+            
         </div>
     )
 };

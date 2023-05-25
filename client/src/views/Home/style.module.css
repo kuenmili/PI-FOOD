@@ -15,6 +15,7 @@
 }
 .components{
     display: flex;
+    align-items: center;
     flex-shrink: 0;
     width: 20%;
     flex-direction: column;
@@ -36,4 +37,5 @@
     color: #7B9029;
     font-family: 'Cherolina';
     font-size: 70px;
+    margin-top: 10px;
 }
