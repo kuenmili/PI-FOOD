@@ -8,7 +8,7 @@
   box-shadow: 1px 6px 7px rgba(0, 0, 0, 0.35);
   margin: 20px;
   width: 40%;
-  padding: 10px;
+  padding: 10px 0 40px;
 }
 
   .inputSteps{
@@ -19,8 +19,12 @@
   }
   .create{
     margin-bottom: 10px;
-    text-decoration: underline;
+    font-size: 50px;
     color: #D6770F;
+    font-family: 'Cherolina';
+    font-weight: 600;
+    padding-top: 20px;
+    margin: 20px 0 20px;
   }
 
   .diets{
@@ -34,8 +38,8 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding-bottom: 30px;
-    padding-top: 30px;
+    padding-bottom: 200px;
+    padding-top: 20px;
     height: 100vh;
     
   }
@@ -50,6 +54,10 @@
     margin: 10px 0 0 5px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
     transition: .3s ease;
+
+  }
+  .health{
+    padding-top: 10px;
   }
 
   .button:hover{
@@ -65,7 +73,13 @@
   .summary{
     width: 400px;
     height: 100px;
-    text-align: start;    
+    text-align: start;
+    border-radius: 20px; 
+    border: 1px solid #D6770F;  
+    padding: 10px;  
+  }
+  .summary:focus{
+    outline-color: #b1610c;    
   }
 
   .steps{
@@ -73,6 +87,38 @@
     height: 100px;
     text-align: start;  
     margin-bottom: 10px;
+    border-radius: 20px; 
+    border: 1px solid #D6770F;
+    padding: 10px;
   }
-    
+  .steps:focus{
+    outline-color: #b1610c;    
+  }
+
+  .write{
+    padding: 5px;
+    margin: 10px;
+    border: none;
+    border-radius: 40px; 
+    border: 1px solid #D6770F;
+  }
+  .name{
+    background-color: #d6760faf;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    border: none;
+    border-radius: 40px; 
+    border: 1px solid #D6770F;    
+  }
+  .name:focus{
+    outline-color: #b1610c;
+  }
+  .write:focus{
+    outline-color: #b1610c;    
+  }
+.name::placeholder{
+  color: white;
+}
+  
   

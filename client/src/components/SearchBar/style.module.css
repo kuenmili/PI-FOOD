@@ -18,7 +18,18 @@
 
 .inputSearch{
     border: none;
+    border-radius: 40px; 
+    border: 1px solid #D6770F; 
+    background-color: #d6760faf;
+    color: white;
+    padding: 5px 0 0 0;
 }
+.inputSearch::placeholder{
+    color: white;
+  }
+.inputSearch:focus{
+    outline-color: #b1610c;
+  }
 
 .inputSearch:active{
     border-color: #D6770F;

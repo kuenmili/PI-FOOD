@@ -87,17 +87,17 @@ const Form = () => {
             
             <h2 className={style.create}>Create Your Recipe!</h2>
 
-            <input type="text" name="title" placeholder="Recipe's name" value={recipeData.title} onChange={handleChange}/>
+            <input type="text" name="title" placeholder="Recipe's name" value={recipeData.title} onChange={handleChange} className={style.name}/>
               {errors.title && <p className={style.error}>{errors.title}</p>}
 
             <textarea type="text" name="summary" placeholder="Recipe's summary" value={recipeData.summary} onChange={handleChange} className={style.summary}/>
               {errors.summary && <p className={style.error}>{errors.summary}</p>}
 
-            <p>Heath Score: </p>
+            <p className={style.health}>Heath Score: </p>
 
             <div className={style.rating}>
               <label htmlFor="healthScore">
-              <input type="number" name="healthScore" placeholder="Health Score" value={recipeData.healthScore} onChange={handleChange} />
+              <input type="number" name="healthScore" placeholder="Health Score" value={recipeData.healthScore} onChange={handleChange} className={style.write}/>
                 {errors.healthScore && <p className={style.error}>{errors.healthScore}</p>} 
               </label>
             </div>
@@ -107,10 +107,10 @@ const Form = () => {
             <textarea type="text" value= {recipeData.steps} name='steps'placeholder='Enter steps' onChange={handleChange}  className={style.steps}/>       
               {errors.steps && <p className={style.error}>{errors.steps}</p>}
 
-            <input type="text" name= 'image' placeholder="Image's Url" value={recipeData.image} onChange={handleChange}/>
+            <input type="text" name= 'image' placeholder="Image's Url" value={recipeData.image} onChange={handleChange} className={style.write}/>
               {errors.image && <p className={style.error}>{errors.image}</p>}
             
-            <select name="diets" onChange={(event)=> handleSelect(event)}>
+            <select name="diets" onChange={(event)=> handleSelect(event)} className={style.write}>
               {diets.map((el)=> {
                 return (
                         <option value={el.value}>{el.text}</option>

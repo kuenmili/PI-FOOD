@@ -7,8 +7,13 @@
     padding: 5px;
     margin: 10px;
     border: none;
-    
+    border-radius: 40px; 
+    border: 1px solid #D6770F;       
 }
+.select:focus{
+    outline-color: #b1610c;    
+  }
+
 
 .button{
     margin-top: 10px;
