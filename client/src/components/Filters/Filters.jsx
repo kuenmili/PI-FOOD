@@ -18,11 +18,13 @@ const Filters = (props) => {
   
   const handlerOrderByName = (event) => {
     const value = event.target.value;
+    props.setFirtsPage(1);
     dispatch(orderByName(value));
   };
 
   const handlerOrderByHealtScore = (event) => {
     const value = event.target.value;
+    props.setFirtsPage(1);
     dispatch(orderByHealtScore(value));
   };
 

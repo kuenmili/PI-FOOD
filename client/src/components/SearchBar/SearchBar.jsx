@@ -4,7 +4,7 @@ import styles from './style.module.css';
 import { useState } from 'react';
 
 
- const SearchBar = () => {
+ const SearchBar = (props) => {
     const dispatch = useDispatch();
     const [ data, setData ] = useState('');    
 
@@ -12,12 +12,14 @@ import { useState } from 'react';
         const value = event.target.value;      
         setData(value.toLowerCase());
     };
+    //write a function that sets page 1 each time an onSubmit is triggered
+    
 
     const onSubmit = (event) => {
-        event.preventDefault();        
+        event.preventDefault();
         dispatch(searchRecipe(data));
         setData("");
-    };
+     };
     
     return (
         <form onSubmit={onSubmit} className={styles.form}>

@@ -15,10 +15,10 @@ const Card = ({ id, image, title, diets }) => {
                 <h3>{title}</h3>            
                 <h4>Diets</h4>
                 <p>{diets.map(diet => diet + ', ')}</p>
-                <Link to={`/detail/${id}`}>
-                    <button className={style.btn}>View Details</button>
-                </Link>
             </div>
+                <Link to={`/detail/${id}`} className={style.btn} >
+                View Details
+                </Link>
         </div>
     );
 };

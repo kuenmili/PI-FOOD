@@ -1,3 +1,6 @@
+import {  faTimes,faCloudUploadAlt  } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { uploadImage } from '../../components/Firebase/client';
 import validation from '../../components/Validation/Validation';
 import { createRecipe, getAllDiets } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,8 +16,12 @@ const Form = () => {
   const history = useHistory(); 
   const diets = useSelector((state) => state.diets);
 
+  const [loading, setLoading] = useState(false);
   const [ dietsSelected, setDietsSelected] = useState([]);
-
+  const [errorImage, setErrorImage] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [percentage, setPercentage] = useState(0)
+  const [imagePreview, setImagePreview] = useState("");
   const [recipeData, setRecipeData] = useState({
     title: '',
     summary: '',
@@ -33,6 +40,7 @@ const Form = () => {
   const handleChange = (event) => {
     const property = event.target.name;
     let value = event.target.value;
+    console.log(property, value);
 
     if (property === "healthScore") {
       value = parseInt(value, 10);    }
@@ -44,20 +52,70 @@ const Form = () => {
         [property]: value
       }))
   };
+  const handleUploadImage = async (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+    if (
+      file.type !== 'image/jpeg' &&
+      file.type !== 'image/png' &&
+      file.type !== 'image/jpg'
+    ) {
+      setErrorImage('Tipo de archivo inválido');
+      return;
+    }
+    try {
+      const task = uploadImage(file);
+      setIsEditing(true)
+      task.on(
+        'state_changed',
+        (snapshot) => {
+          const percentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setPercentage(percentage)
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          task.snapshot.ref.getDownloadURL().then((url) => {
+            setIsEditing(false)
+            setRecipeData((prevData) => ({
+              ...prevData,
+              image: url,
+            }));
+            setImagePreview(url);
+          });
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
     
   const handleSelect = (event) => {   
-    // eslint-disable-next-line eqeqeq
-    const filteredDiet = diets.find(el => el.value == event.target.value)
+
+    const { value, checked } = event.target;
+
+    if (checked){
+      const filteredDiet = diets.find(el => el.value == value)
     setRecipeData({
         ...recipeData,
         diets: [...recipeData.diets, filteredDiet],
     })
     setDietsSelected([...dietsSelected, filteredDiet]);
+    }   
   }
 
+  const handleImageRemove = () => {  
+    setRecipeData({
+      ...recipeData,
+      image: ""
+    });
+    setImagePreview("");
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    
     if(recipeData.title !== ""){
       dispatch(createRecipe(recipeData));
       setRecipeData({
@@ -79,9 +137,53 @@ const Form = () => {
     
   return (
         <div className={style.all}>
-          <div className={style.divButton}>
-            <img className= { style.img } src={process.env.PUBLIC_URL + '/Form.png'} alt="Landing" />
+            
+              
+          <div className={style.imgContainer}>
+          {
+            imagePreview 
+            ?
+            
+             <div  className={style.imgPreview}>
+              <img
+                className={style.image}
+                src={imagePreview}
+                alt=""
+                />       
+         
+              <button
+                type="button"
+                onClick={() => handleImageRemove()}
+                className={style.remove}
+                >
+                <FontAwesomeIcon icon={faTimes} className={style.iconremove} />
+              </button>          
+             
+              </div>
+          : 
+          <>
+          <label class={style.customUpload} for="file">
+          <div class={style.icon}>
+          <FontAwesomeIcon icon={faCloudUploadAlt} />
           </div>
+          <div class={style.text}>
+             <span>Click to upload image</span>
+              {isEditing ?  (
+                <progress value={percentage} max="100" className={style.progress}></progress>
+                ) : null}
+      </div>
+             <input className= {style.inputimg} type="file" id="file" onChange={handleUploadImage}/>
+          </label>      
+         
+          
+          </>
+          
+          }
+
+          
+            </div>
+       
+         
 
           <form onSubmit={handleSubmit} className={style.form}>
             
@@ -107,23 +209,19 @@ const Form = () => {
             <textarea type="text" value= {recipeData.steps} name='steps'placeholder='Enter steps' onChange={handleChange}  className={style.steps}/>       
               {errors.steps && <p className={style.error}>{errors.steps}</p>}
 
-            <input type="text" name= 'image' placeholder="Image's Url" value={recipeData.image} onChange={handleChange} className={style.write}/>
-              {errors.image && <p className={style.error}>{errors.image}</p>}
             
-            <select name="diets" onChange={(event)=> handleSelect(event)} className={style.write}>
-              {diets.map((el)=> {
+            <div onChange={(event)=> handleSelect(event)} className={style.write}>
+              {diets.map((el, index)=> {
                 return (
-                        <option value={el.value}>{el.text}</option>
+                  <>
+                        <label htmlFor={index}>{el.text}</label>
+                        <input id={index} name='diets' type= 'checkbox' value={el.value}/>
+                  </> 
                         )
                 })
               } 
-            </select>
-            <ul>
-              {
-                dietsSelected.map(el => <li>{el.text}</li>)
-              }
-            </ul>
-
+            </div>
+            
             <button type="submit" className={style.button}>Create</button>
           </form>
         </div>

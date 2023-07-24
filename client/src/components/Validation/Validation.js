@@ -7,8 +7,14 @@ const validation = (recipeData) => {
     if(recipeData.title.length < 3){
         errors.title = 'The name must have more than 3 words long'
     }
+    if(recipeData.title.length > 20){
+        errors.title = 'The name must have less than 20 words long'
+    }
     if(!recipeData.healthScore) {
         errors.healthScore = 'Health Score is required'
+    }
+    if(recipeData.healthScore < 0 || recipeData.healthScore > 120){
+        errors.healthScore = "Health Score must be between 1 and 120"
     }
     if(!recipeData.summary) {
         errors.summary = 'Summary is required'

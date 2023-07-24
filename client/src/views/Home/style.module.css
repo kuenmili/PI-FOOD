@@ -39,3 +39,14 @@
     font-size: 70px;
     margin-top: 10px;
 }
+.img{
+    background-color:#7B9029;
+    width: 50%;
+    height: 50%;
+}
+
+.loader{
+    display: flex;
+    justify-content: center;
+    
+}

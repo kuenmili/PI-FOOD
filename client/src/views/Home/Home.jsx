@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
 import { useEffect, useState } from 'react';
 import style from './style.module.css';
+import LoadingGlobal from '../../components/LoadingGlobal/loading';
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
    
     const allCards = useSelector((state => state.recipes));
     const filteredRecipes = useSelector((state) => state.filteredRecipes);
-    
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(9);
 
@@ -37,7 +38,10 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getAllRecipes());
-        dispatch(getAllDiets());       
+        dispatch(getAllDiets());
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);       
     }, [dispatch]);  
     
     return (
@@ -61,7 +65,16 @@ const Home = () => {
                     setFirtsPage={setFirtsPage}
                     />
                 </div>
-                
+
+                {
+                    loading ?
+                    (
+                        <div className={style.loader}>
+                            <LoadingGlobal />
+                        </div>
+                    )
+                    :
+                    (
                 <div className={style.cardsContainer}>
                 {
                     currentCards.map((card) => {
@@ -79,7 +92,10 @@ const Home = () => {
                     )
                 })}
                 
-                </div>
+                </div>                        
+                    )
+                }
+                
             </div>
             
         </div>

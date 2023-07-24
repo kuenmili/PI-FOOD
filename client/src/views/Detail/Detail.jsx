@@ -2,7 +2,8 @@ import { getRecipeDetail, deleteRecipe } from '../../redux/actions';
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from './style.module.css';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import LoadingGlobal from '../../components/LoadingGlobal/loading';
 
 
 const Detail = () => {
@@ -10,6 +11,7 @@ const Detail = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+    const [loading, setLoading] = useState(true);
 
     const recipe = useSelector(state => state.detail);
 
@@ -20,6 +22,9 @@ const Detail = () => {
 
     useEffect(() => {
         dispatch(getRecipeDetail(id))
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000); 
     }, [dispatch, id]);
 
     
@@ -49,8 +54,17 @@ const Detail = () => {
         return null;
     };
        
-    return (
+    return (        
         <div className={style.container}>
+            {
+                loading ? 
+                (
+               <div className={style.loader}>
+                <LoadingGlobal />
+               </div>
+                 ) :
+                (
+                <div className={style.container}>
             <div className={style.firstpart}>
                 <img
                     className={style.img}
@@ -92,6 +106,11 @@ const Detail = () => {
             </button>                             
 
         </div>
+        </div>   
+                )
+            }
+            
+
         </div>
     )
 };
